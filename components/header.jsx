@@ -1,9 +1,12 @@
 import { assets } from "@/assets/assets";
+import axios from "axios";
 import Image from "next/image";
+import { useState } from "react";
 
 const Header = () => {
 
     const [email, setEmail] = useState("")
+  
 
     const onChangeHandler = (e)=>{
         setEmail(e.target.value)
@@ -12,13 +15,13 @@ const Header = () => {
     const onSubmitHandler = async (e)=>{
         e.preventDefault();
         const formData = new FormData();
-        formData.append("email", email)
+        formData.append("email", email);
 
 
        const response = await axios.post("/api/email", formData);
 
-       if(response.data.success){
-        console.log("it worked");
+       if(response.data.success){  
+        console.log("it workeeed");
         setEmail("");
 
        }else{
