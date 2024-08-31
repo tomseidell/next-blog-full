@@ -23,3 +23,22 @@ export async function POST(request){
 
 
 }
+
+
+ export async function GET(request){
+
+     const emails =await EmailModel.find({})
+     return NextResponse.json({emails})  
+     }
+
+
+
+
+
+     export async function DELETE(request){
+     const emailId = request.nextUrl.searchParams.get("id");
+     await EmailModel.findByIdAndDelete(emailId)
+
+     return NextResponse.json({success:true, msg: "we made it"})
+     }
+
