@@ -3,11 +3,16 @@
 import { assets } from "@/assets/assets";
 import Footer from "@/components/footer";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const page = ({params}) => {
+
+    const {data: userData} = useSession()
+
+
 
     const [data, setData] = useState(null)
 
@@ -34,9 +39,22 @@ const page = ({params}) => {
                 <Link href="/">
                  <Image src={assets.logo} width={180} alt="" className="w-130 sm:w-auto"/>
                 </Link>
+                {userData? 
+                 <Link href={"/account/dashboard"}>
+                 <button className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000]">
+                   Account <Image src={assets.arrow} alt=""/>
+                 </button>
+                </Link>
+                :
+                <Link href={"/account/login"}>
                 <button className="flex items-center gap-2 font-medium py-1 px-3 sm:py-3 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000]">
-                    Get started <Image src={assets.arrow} alt=""/>
-                    </button>
+                    Account <Image src={assets.arrow} alt=""/>
+                </button>
+                </Link>
+                }
+
+               
+                
             </div>
             <div className="text-center my-24">
                 <h1 className="text-2xl sm:text-5xl font-semibold max-w-[700] mx-auto">{data.title}</h1>

@@ -7,10 +7,13 @@ const { default: ConnectDB } = require("@/lib/config/db");
 const LoadDB = async ()=>{
     await ConnectDB();
 }
+
 LoadDB()
 
 
 export async function POST(request){
+
+
 
  const formData = await request.formData();
  const name = formData.get("name");
