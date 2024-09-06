@@ -49,8 +49,32 @@ LoadDB();
     secret: process.env.NEXTAUTH_SECRET, 
     pages:{
         signIn: "/account/login"
-    }
+    },
+    callbacks: {
+        async jwt({ token, user }) {
+          // Falls ein Benutzerobjekt vorhanden ist (neue Anmeldung)
+          if (user) {
+            token.id = user._id;
+            token.name = user.name;
+            token.email = user.email;
+          }
+          return token;
+        },
+        async session({ session, token }) {
+          // Session mit den neuesten Token-Daten aktualisieren
+          if (token) {
+            session.user = {
+              id: token.id,
+              name: token.name,
+              email: token.email,
+            };
+          }
+          return session;
+        },
+      },
 };
+
+/// update: nur callbacks hinzugefügt
  
 const handler = NextAuth(authOptions);
 

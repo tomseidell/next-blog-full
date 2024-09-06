@@ -27,7 +27,7 @@ const Sidebar = () => {
                         <Image src={assets.email_icon} alt="Email Icon" width={28} height={28}/>{/* Hinzufügen von height */}
                         <p>Subscriptions</p>
                     </Link>
-                    <Link href="/admin/subscriptions" className="mt-5 flex item-center border border-black gap-3 font-medium px-3 py-2 bg-white shadow-[-5px_5px_0px_#000000]">
+                    <Link href="/account/dashboard/settings" className="mt-5 flex item-center border border-black gap-3 font-medium px-3 py-2 bg-white shadow-[-5px_5px_0px_#000000]">
                         <Image src={assets.settings_account} alt="Settings" width={28} height={28}/>
                         <p>Settings</p>
                     </Link>
@@ -42,3 +42,15 @@ const Sidebar = () => {
 }
  
 export default Sidebar;
+
+
+
+/*
+
+ <Link href='/admin/subscriptions' className="mt-5 flex items-center border border-black gap-3 font-medium px-3 py-2 bg-white shadow-[-5px_5px_0px_#000000] group">
+            <FaSignOutAlt className="text-lg sm:mr-2 transform transition-transform duration-300 group-hover:scale-125" /> 
+            <p className='hidden sm:block'>Log out</p> 
+          </Link>
+
+
+*/ 
